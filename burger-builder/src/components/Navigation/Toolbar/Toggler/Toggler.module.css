@@ -1,0 +1,14 @@
+.Toggler {
+    padding: 3px;
+}
+.Toggler i{
+    font-size: 40px;
+    color:#f2f2f2;  
+}
+
+@media(min-width: 499px){
+    .Toggler i{
+        display: none;
+    }
+}
+
