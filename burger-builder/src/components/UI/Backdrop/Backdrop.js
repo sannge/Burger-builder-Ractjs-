@@ -1,18 +1,9 @@
-import classes,{useEffect} from './Backdrop.module.css'
-import React from 'react'
+import React from 'react';
 
-function Backdrop(props) {
-   
- 
-    return (
-        <>
-           {props.show ? 
-            <div  onClick={props.clicked} className={classes.Backdrop}>
-            </div>  
-            : null 
-        }
-        </>
-    )
-}
+import classes from './Backdrop.module.css';
 
-export default Backdrop
+const backdrop = (props) => (
+    props.show ? <div className={classes.Backdrop} onClick={props.clicked}></div> : null
+);
+
+export default backdrop;

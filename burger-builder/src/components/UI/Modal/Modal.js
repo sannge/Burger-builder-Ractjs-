@@ -1,34 +1,34 @@
+import React, { Component } from 'react';
 
-import React,{useEffect,useState} from 'react'
 import classes from './Modal.module.css';
-import Backdrop from '../Backdrop/Backdrop'
 
-function Modal(props) {
-    
-  
-    useEffect(
-        ()=>{
-            
-        },[props.show]
-    )
-    
-    return (
-        <>
-        <Backdrop show={props.show} />
-        <div  onClick={props.modalClosed} className={classes.Modal} style={{
-            transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
-            opacity: props.show ? '1' : '0'
-        }}
-        >
-            {props.children}
-        </div>
-        </>
-    )
+import Backdrop from '../Backdrop/Backdrop';
+
+class Modal extends Component {
+
+    shouldComponentUpdate ( nextProps, nextState ) {
+        return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
+    }
+
+    componentWillUpdate () {
+        console.log('[Modal] WillUpdate');
+    }
+
+    render () {
+        return (
+            <>
+                <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
+                <div
+                    className={classes.Modal}
+                    style={{
+                        transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
+                        opacity: this.props.show ? '1' : '0'
+                    }}>
+                    {this.props.children}
+                </div>
+            </>
+        )
+    }
 }
 
-export default React.memo(Modal,(props,nextProps) => {
-    if(props.show === nextProps.show){
-        return false;
-    }
-})
-// export default Modal;
+export default Modal;
